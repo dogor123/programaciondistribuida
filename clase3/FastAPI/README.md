@@ -1,0 +1,3 @@
+¿Es seguro usar variable global? No del todo. En un entorno con múltiples hilos o workers simultáneos, dos peticiones pueden leer y modificar la lista al mismo tiempo causando datos inconsistentes. Para el ejercicio en clase funciona, pero no es una práctica de producción.
+¿Dónde aparece el recurso compartido? La lista clientes y la variable contador_clientes son los recursos compartidos, porque todos los endpoints los leen o modifican y viven en la memoria del mismo proceso.
+¿Se debería usar lock en producción? Sí. En producción se usaría un asyncio.Lock() para garantizar que solo una operación modifique la lista a la vez, o mejor aún, se reemplazaría la lista por una base de datos real que maneja la concurrencia internamente.
