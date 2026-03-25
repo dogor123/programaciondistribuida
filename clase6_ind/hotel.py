@@ -5,15 +5,15 @@ app = FastAPI()
 
 # Estado global
 habitaciones_disponibles = 8
-lock = asyncio.Lock() # Protege la sección crítica [cite: 27]
+lock = asyncio.Lock() # Protege la sección crítica
 
 @app.get("/reservar")
 async def reservar():
     global habitaciones_disponibles
     
-    # Sección crítica protegida por Lock [cite: 15]
+    # Sección crítica protegida por Lock
     async with lock:
-        # Simular proceso lento (consultar BD) [cite: 12]
+        # Simular proceso lento (consultar BD)
         await asyncio.sleep(0.2)
         
         if habitaciones_disponibles > 0:
